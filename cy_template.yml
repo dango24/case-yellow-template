@@ -7,6 +7,16 @@ Parameters:
 
 Resources:
 
+  JustRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [s3.amazonaws.com]
+
   OrenLambda:
     Type: "AWS::Lambda::Function"
     Properties:
@@ -18,5 +28,6 @@ Resources:
             }
       Handler: index.handler
       MemorySize: 1024
+      Role: !Ref JustRole
       Runtime: "nodejs4.3"
       Timeout: 150
