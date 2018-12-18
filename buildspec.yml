@@ -1,0 +1,25 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo Nothing to do in the install phase...
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Archive cloud formation template
+      - zip -r cy-template-archive.zip cy_template.yml appspec.yml scripts/*
+      - echo Uplaod cy-template-archive.zip to S3
+      - aws s3 cp cy-template-archive.zip s3://cy-codebuild/cy-template-build-artifact/
+      - echo Successfully uplaoded cy-template-archive.zip to S3
+
+artifacts:
+  files:
+    - cy_template.yml
+    - appspec.yml
+    - scripts/*
