@@ -1,7 +1,40 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: CY Demo Lambda
+
 Resources:
+
+  # IAM role
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: LambdaRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service: "lambda.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        -
+          PolicyName: "LogParserPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  - "cognito-idp:DescribeUserPool"
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: ""arn:aws:logs:*:*:*""
+
+  # Lambda
+
   CYDemoLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
@@ -11,7 +44,7 @@ Resources:
       Description: 'Lambda function for CD Demo'
       MemorySize: 128
       Timeout: 30
-      Role: 'arn:aws:iam::534757714062:role/LetsRole'
+      Role: !Role LambdaRole
       Events:
         getAZsAPI:
           Type: Api
