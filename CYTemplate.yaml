@@ -43,7 +43,10 @@ Resources:
       Description: 'Lambda function for CD Demo'
       MemorySize: 128
       Timeout: 30
-      Role: Fn::GetAtt: [ "LambdaRole", "Arn" ]
+      Role:
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
       Events:
         getAZsAPI:
           Type: Api
