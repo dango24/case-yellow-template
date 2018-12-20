@@ -2,7 +2,7 @@ version: 0.1
 phases:
   install:
     commands:
-      - aws cloudformation package --template-file CYTemplate.yaml --s3-bucket cy-template-build-artifact/ --output-template-file outputSamTemplate.yaml
+      - aws cloudformation package --template-file CYTemplate.yaml --s3-bucket cy-template-build-artifact --output-template-file outputSamTemplate.yaml
 artifacts:
   type: zip
   files:
