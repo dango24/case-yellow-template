@@ -90,7 +90,7 @@ Resources:
               x-amazon-apigateway-request-validator: "Validate query string parameters and headers"
               x-amazon-apigateway-integration:
                 uri:
-                  - Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations"
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
