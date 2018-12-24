@@ -88,28 +88,27 @@ Resources:
                 required: true
                 type: "string"
               x-amazon-apigateway-request-validator: "Validate query string parameters and headers"
-            put:
               x-amazon-apigateway-integration:
                 uri:
                   - Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations"
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
-          /persons/{id}:
-            get:
-              parameters:
-              - name: "id"
-                in: "path"
-                required: true
-                type: "string"
-              responses: {}
-              x-amazon-apigateway-integration:
-                uri:
-                  - Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations"
-                responses: {}
-                httpMethod: "POST"
-                type: "aws_proxy"
-        x-amazon-apigateway-request-validators:
-          Validate query string parameters and headers:
-            validateRequestParameters: true
-            validateRequestBody: false
+        #   /persons/{id}:
+        #     get:
+        #       parameters:
+        #       - name: "id"
+        #         in: "path"
+        #         required: true
+        #         type: "string"
+        #       responses: {}
+        #       x-amazon-apigateway-integration:
+        #         uri:
+        #           - Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations"
+        #         responses: {}
+        #         httpMethod: "POST"
+        #         type: "aws_proxy"
+        # x-amazon-apigateway-request-validators:
+        #   Validate query string parameters and headers:
+        #     validateRequestParameters: true
+        #     validateRequestBody: false
