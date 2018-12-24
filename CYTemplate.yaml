@@ -45,7 +45,9 @@ Resources:
       MemorySize: 128
       Timeout: 30
       Role:
-        - !GetAtt LambdaRole.Arn
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
       # Events:
       #   GetByPathApi:
       #     Type: Api
