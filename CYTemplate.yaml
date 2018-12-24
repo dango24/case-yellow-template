@@ -30,7 +30,8 @@ Resources:
                   - "logs:CreateLogGroup"
                   - "logs:CreateLogStream"
                   - "logs:PutLogEvents"
-                Resource: Fn::Sub: "arn:aws:logs:${AWS::Region}:*:*"
+                Resource:
+                  - Sub "arn:aws:logs:${AWS::Region}:*:*"
                 Effect: "Allow"
                 Action:
                   - "ec2:DescribeInstances"
