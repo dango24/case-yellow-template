@@ -98,8 +98,7 @@ Resources:
                 in: "query"
                 required: true
                 type: "string"
-              x-amazon-apigateway-request-validator: "Validate query string parameters and\
-                \ headers"
+              x-amazon-apigateway-request-validator: "Validate query string parameters and headers"
             put:
               x-amazon-apigateway-integration:
                 uri:
