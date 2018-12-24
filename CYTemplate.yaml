@@ -55,14 +55,14 @@ Resources:
             Path: /persons/{id}
             Method: GET
             RestApiId:
-              - Ref: MyApi
+              - !Ref MyApi
         GetByQueryApi:
           Type: Api
           Properties:
             Path: /persons
             Method: GET
             RestApiId:
-              - Ref: MyApi
+              - !Ref MyApi
       Environment:
         Variables:
           REGION: eu-central-1
