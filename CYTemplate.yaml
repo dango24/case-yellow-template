@@ -56,18 +56,18 @@ Resources:
       Events:
         GetByPathApi:
           Type: Api
-            Properties:
-              Path: /persons/{id}
-              Method: GET
-              RestApiId:
-                Ref: MyApi
+          Properties:
+            Path: /persons/{id}
+            Method: GET
+            RestApiId:
+              Ref: MyApi
         GetByQueryApi:
           Type: Api
-            Properties:
-              Path: /persons
-              Method: GET
-              RestApiId:
-                Ref: MyApi
+          Properties:
+            Path: /persons
+            Method: GET
+            RestApiId:
+              Ref: MyApi
       Environment:
         Variables:
           REGION: eu-central-1
