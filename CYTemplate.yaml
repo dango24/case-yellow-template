@@ -94,16 +94,10 @@ Resources:
                 type: "string"
               x-amazon-apigateway-request-validator: "Validate query string parameters and\
                 \ headers"
-              x-amazon-apigateway-integration:
-                uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPersonByHTTPParamFunction.Arn}/invocations
-                responses: {}
-                httpMethod: "POST"
-                type: "aws_proxy"
             put:
               x-amazon-apigateway-integration:
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${StorePersonFunction.Arn}/invocations
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
@@ -117,7 +111,7 @@ Resources:
               responses: {}
               x-amazon-apigateway-integration:
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPersonByHTTPParamFunction.Arn}/invocations
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
