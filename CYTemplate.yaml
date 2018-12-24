@@ -32,52 +32,40 @@ Resources:
                   - "logs:PutLogEvents"
                 Resource:
                   - Sub "arn:aws:logs:${AWS::Region}:*:*"
-      #         -
-      #           Effect: "Allow"
-      #           Action:
-      #             - "ec2:DescribeInstances"
-      #           Resource:
-      #             Fn::Join:
-      #               - ""
-      #               - - "arn:aws:"
-      #                 - Ref: "AWS::Region"
-      #                 - ":"
-      #                 - Ref: "AWS::AccountId"
-      #                 - ":instance/*"
 
   # Lambda
 
-  # CYDemoLambda:
-  #   Type: 'AWS::Serverless::Function'
-  #   Properties:
-  #     Handler: lambda_function.lambda_handler
-  #     Runtime: python3.6
-  #     CodeUri: ./LambdaCode
-  #     Description: 'Lambda function for CD Demo'
-  #     MemorySize: 128
-  #     Timeout: 30
-  #     Role:
-  #       Fn::GetAtt:
-  #         - "LambdaRole"
-  #         - "Arn"
-  #     Events:
-  #       GetByPathApi:
-  #         Type: Api
-  #         Properties:
-  #           Path: /persons/{id}
-  #           Method: GET
-  #           RestApiId:
-  #             - Ref: MyApi
-  #       GetByQueryApi:
-  #         Type: Api
-  #         Properties:
-  #           Path: /persons
-  #           Method: GET
-  #           RestApiId:
-  #             - Ref: MyApi
-  #     Environment:
-  #       Variables:
-  #         REGION: eu-central-1
+  CYDemoLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.6
+      CodeUri: ./LambdaCode
+      Description: 'Lambda function for CD Demo'
+      MemorySize: 128
+      Timeout: 30
+      Role:
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
+      Events:
+        GetByPathApi:
+          Type: Api
+          Properties:
+            Path: /persons/{id}
+            Method: GET
+            RestApiId:
+              - Ref: MyApi
+        GetByQueryApi:
+          Type: Api
+          Properties:
+            Path: /persons
+            Method: GET
+            RestApiId:
+              - Ref: MyApi
+      Environment:
+        Variables:
+          REGION: eu-central-1
 
 
   # Api
