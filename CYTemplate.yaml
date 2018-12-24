@@ -36,7 +36,13 @@ Resources:
                 Action:
                   - "ec2:DescribeInstances"
                 Resource:
-                  Fn::Join: [ "", [ "arn:aws:", !Ref: "AWS::Region" , ":", !Ref: "AWS::AccountId", ":instance/*" ]]
+                  Fn::Join:
+                    - ""
+                    - - "arn:aws:"
+                      - !Ref: "AWS::Region"
+                      - ":"
+                      - !Ref: "AWS::AccountId"
+                      - ":instance/*"
 
   # Lambda
 
