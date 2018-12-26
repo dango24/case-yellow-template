@@ -64,7 +64,7 @@ Resources:
             RestApiId: !Ref MyApi
       Environment:
         Variables:
-          REGION: eu-central-1
+          REGION: !Ref: "AWS::Region"
 
 
   # Api
