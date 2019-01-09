@@ -38,7 +38,7 @@ Resources:
                   - "ec2:DescribeSecurityGroups"
                   - "ec2:DescribeTags"
                 Resource:
-                  - "*""
+                  - "*"
 
   # Lambda
 
