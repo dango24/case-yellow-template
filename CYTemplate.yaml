@@ -45,8 +45,16 @@ Resources:
 
   # Lambda
 
+  DummyLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: LambdaRole
+    Properties:
+      LogGroupName: dummy
+      RetentionInDays: 1
+
   CYDemoLambda:
     Type: 'AWS::Serverless::Function'
+    DependsOn: LambdaRole
     Properties:
       FunctionName: "CYDemoLambda"
       Handler: lambda_function.lambda_handler
