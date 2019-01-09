@@ -32,6 +32,13 @@ Resources:
                   - "logs:PutLogEvents"
                 Resource:
                   - Sub "arn:aws:logs:${AWS::Region}:*:*"
+              -
+                Effect: "Allow"
+                Action:
+                  - "ec2:DescribeSecurityGroups"
+                  - "ec2:DescribeTags"
+                Resource:
+                  - "*""
 
   # Lambda
 
