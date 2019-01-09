@@ -43,6 +43,24 @@ Resources:
                 Resource:
                   - "*"
 
+
+  IamPolicyLambdaVpc:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: "lambda-vpc"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Roles: !Ref LambdaRole
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "ec2:CreateNetworkInterface"
+              - "ec2:DescribeNetworkInterfaces"
+              - "ec2:DeleteNetworkInterface"
+            Resource:
+              - "*"
+
   # Lambda
 
   DummyLogGroup:
