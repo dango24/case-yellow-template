@@ -73,11 +73,11 @@ Resources:
       LogGroupName: dummy
       RetentionInDays: 1
 
-  CYDemoLambda2:
+  CYDemoLambda:
     Type: 'AWS::Serverless::Function'
     DependsOn: LambdaRole
     Properties:
-      FunctionName: "CYDemoLambda2"
+      FunctionName: "CYDemoLambda"
       Handler: lambda_function.lambda_handler
       Runtime: python3.6
       CodeUri: ./LambdaCode
@@ -88,12 +88,12 @@ Resources:
         Fn::GetAtt:
           - "LambdaRole"
           - "Arn"
-      VpcConfig:
-        SubnetIds:
-          - subnet-7421e91f
-          - subnet-e3131a99
-        SecurityGroupIds:
-          - sg-0a9aeeb3e7d9825de
+      # VpcConfig:
+      #   SubnetIds:
+      #     - subnet-7421e91f
+      #     - subnet-e3131a99
+      #   SecurityGroupIds:
+      #     - sg-0a9aeeb3e7d9825de
       Events:
         GetByPathApi:
           Type: Api
@@ -134,7 +134,7 @@ Resources:
               x-amazon-apigateway-request-validator: "Validate query string parameters and headers"
               x-amazon-apigateway-integration:
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda2.Arn}/invocations
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
@@ -148,7 +148,7 @@ Resources:
               responses: {}
               x-amazon-apigateway-integration:
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda2.Arn}/invocations
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${CYDemoLambda.Arn}/invocations
                 responses: {}
                 httpMethod: "POST"
                 type: "aws_proxy"
