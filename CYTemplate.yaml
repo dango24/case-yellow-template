@@ -73,6 +73,44 @@ Resources:
         Variables:
           REGION: eu-central-1
 
+  CYDemoLambda2:
+    Type: 'AWS::Serverless::Function'
+    DependsOn: LambdaRole
+    Properties:
+      FunctionName: "CYDemoLambda2"
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.6
+      CodeUri: ./LambdaCode
+      Description: 'Lambda function for CD Demo'
+      MemorySize: 128
+      Timeout: 30
+      Role:
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
+      VpcConfig:
+        SubnetIds:
+          - subnet-7421e91f
+          - subnet-e3131a99
+        SecurityGroupIds:
+          - sg-0a9aeeb3e7d9825de
+      Events:
+        GetByPathApi:
+          Type: Api
+          Properties:
+            Path: /persons/{id}
+            Method: GET
+            RestApiId: !Ref MyApi
+        GetByQueryApi:
+          Type: Api
+          Properties:
+            Path: /persons
+            Method: GET
+            RestApiId: !Ref MyApi
+      Environment:
+        Variables:
+          REGION: eu-central-1
+
 
   # Api
 
